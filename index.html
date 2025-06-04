@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Para Catherine 💛</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff8dc, #fffacd);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    .card {
+      background: rgba(255, 255, 204, 0.85);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255, 223, 0, 0.3);
+      max-width: 600px;
+      padding: 2.5rem 3rem;
+      text-align: center;
+      color: #5a4600;
+      position: relative;
+      user-select: none;
+    }
+
+    .card h1 {
+      font-weight: 600;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+      color: #d4af37;
+      text-shadow: 0 0 8px #fffacd;
+    }
+
+    .message {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+      min-height: 110px;
+      white-space: pre-wrap;
+    }
+
+    button {
+      background-color: #ffdb4d;
+      border: none;
+      padding: 0.8rem 2.5rem;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      font-weight: 600;
+      color: #5a4600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffd633;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: #a38700;
+    }
+
+    .footer a {
+      color: #d4af37;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .footer a:hover {
+      border-color: #d4af37;
+    }
+    @media (max-width: 480px) {
+  .card {
+    max-width: 90vw;
+    padding: 2rem 1.5rem;
+  }
+  .card h1 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+  .message {
+    font-size: 1.2rem;
+    min-height: 100px;
+  }
+  button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+  .footer {
+    font-size: 0.9rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Para Catherine 💛</h1>
+    <div class="message" id="messageBox"></div>
+    <button id="nextBtn">Clique para descobrir algo especial</button>
+    <div class="footer" id="footer"></div>
+  </div>
+
+  <script>
+    const messages = [
+      "Eu não esperava que isso fosse acontecer...",
+  "Me apaixonar por você apenas por mensagens.",
+  "Quando vi você então, parece que tudo ficou mais claro para mim.",
+  "Tudo parecia ser tão mais leve, e foi muito perfeito, nunca irei me esquecer desse 01/06 .",
+  "Catherine,",
+  "Você me pegou de um jeito totalmente desprevenido, e agora, com clareza, vou fazer de tudo por nós.",
+  "Você é o brilho que faltava na minha vida.",
+  "Quer viver isso comigo? 💛"
+];
+
+
+    let index = 0;
+    const messageBox = document.getElementById('messageBox');
+    const nextBtn = document.getElementById('nextBtn');
+    const footer = document.getElementById('footer');
+
+    function typeMessage(text, callback) {
+      let i = 0;
+      let currentText = '';
+      messageBox.innerHTML = '';
+      const interval = setInterval(() => {
+        currentText += text[i];
+        messageBox.innerHTML = currentText;
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+          if (callback) callback();
+        }
+      }, 40);
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if (index < messages.length) {
+        typeMessage(messages[index]);
+        index++;
+        if (index === messages.length) {
+          nextBtn.textContent = '💛';
+          setTimeout(() => {
+            footer.innerHTML = `🎵 Ouça nossa trilha sonora especial: <a href="https://open.spotify.com/intl-pt/track/3AJwUDP919kvQ9QcozQPxg?si=0f430267953d4172" target="_blank" rel="noopener noreferrer">Yellow - Coldplay</a>`;
+          }, 800);
+        }
+      } else {
+        nextBtn.disabled = true;
+        nextBtn.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
